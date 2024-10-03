@@ -3,6 +3,8 @@ import { nanoid } from "nanoid"
 import * as Yup from "yup"
 import { FaPhoneSquare } from "react-icons/fa"
 import { IoPersonCircle } from "react-icons/io5"
+import { useDispatch } from "react-redux"
+import {addContact} from "../../redux/contactsSlice.js"
 
 import s from "./ContactForm.module.css"
 
@@ -26,12 +28,14 @@ const ContactSchema = Yup.object().shape({
     .required("Required field"),
 })
 
-const ContactForm = ({ onAdd }) => {
-  const nameId = nanoid()
-  const numId = nanoid()
-  function handleSubmit(values, actions) {
-    const addContact = { ...values, id: nanoid() }
-    onAdd(addContact)
+const ContactForm = () => {
+
+const dispatch = useDispatch()
+const nameId = nanoid()
+const numId = nanoid()
+function handleSubmit(values, actions) {
+    const addNewContact = { ...values, id: nanoid() }
+    dispatch(addContact(addNewContact))
     actions.resetForm()
   }
 
