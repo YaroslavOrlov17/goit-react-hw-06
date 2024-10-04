@@ -10,6 +10,7 @@ import filtersReducer from "./filtersSlice.js"
 const persistConfig = {
     key: 'root',
     storage,
+    blacklist: ['filters']
   }
 
 const rootReducer = combineReducers({

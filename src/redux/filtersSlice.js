@@ -7,17 +7,12 @@ const filterSlice = createSlice({
     },
     reducers: {
         changeFilter: (state,actions) => {
-            return {
-                ...state,
-                name: actions.payload
-            }
+            state.name = actions.payload
         }
     }
 })
 
-// Селектор для получения значения фильтра
-export const selectNameFilter = (state) => state.filters.name;
 
-// Экспортируем редюсер и экшены
+export const selectNameFilter = (state) => state.filters.name;
 export const {changeFilter} = filterSlice.actions;
 export default filterSlice.reducer;
